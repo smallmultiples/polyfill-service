@@ -145,16 +145,16 @@ With every polyfill loaded, filesizes are pleasingly small.
 | Browser               | Filesize |
 | --------------------- | --------:|
 | Chrome                |    338 B |
-| Internet Explorer 10+ |    346 B |
+| Opera 18+             |    338 B |
 | Firefox 6+            |    346 B |
-| Safari 6+             |    351 B |
-| Safari 5.1            |    442 B |
-| Opera 15+             |    798 B |
+| Internet Explorer 10+ |    557 B |
+| Safari 6+             |    539 B |
+| Safari 5.1            |    634 B |
 | Firefox 3.6           |  1.57 KB |
-| Internet Explorer 9   |  1.71 KB |
-| Safari 4              |  2.32 KB |
-| Internet Explorer 8   |  4.88 KB |
-| Internet Explorer 6/7 |  7.70 KB |
+| Internet Explorer 9   |  2.05 KB |
+| Safari 4              |  2.69 KB |
+| Internet Explorer 8   |  5.59 KB |
+| Internet Explorer 6/7 |  8.20 KB |
 
 ## How do I use this on my own?
 
