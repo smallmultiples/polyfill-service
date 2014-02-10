@@ -5,6 +5,7 @@
 <ifModule mod_headers.c>
 	# unset the php header
 	Header unset X-Powered-By
+	Header append Vary: User-Agent
 </ifModule>
 
 <IfModule mod_rewrite.c>
