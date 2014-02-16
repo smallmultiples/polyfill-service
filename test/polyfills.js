@@ -1,16 +1,16 @@
-
+var assert = require('assert');
 var polyfill = require('..');
 
-describe('Polyfills', function () {
-	it('should resolve names', function () {
-		polyfill.polyfills['Array.isArray'].name.should.equal('Array.isArray');
-	});
+suite('polyfill');
 
-	it('should resolve requires when not defined', function () {
-		polyfill.polyfills['Array.isArray'].requires.should.be.a.Array;
-	});
+test('should resolve names', function () {
+	assert.equal(polyfill.polyfills['Array.isArray'].name, 'Array.isArray');
+});
 
-	it('should resolve requires when not an array', function () {
-		polyfill.polyfills['Array.from'].requires.should.be.a.Array;
-	})
+test('should resolve requires when not defined', function () {
+	assert(polyfill.polyfills['Array.isArray'].requires instanceof Array);
+});
+
+test('should resolve requires when not an array', function () {
+	assert(polyfill.polyfills['Array.from'].requires instanceof Array);
 })
