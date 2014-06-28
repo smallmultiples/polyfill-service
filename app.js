@@ -34,7 +34,7 @@ app.get(/^\/polyfill(\.\w+)(\.\w+)?/, function(req, res) {
 });
 
 
-app.listen(port);
+app.listen(port, '0.0.0.0');
 
 function parseRequestedPolyfills(polyfillList, additionalFlags) {
 	var list = polyfillList.split(',').filter(function(x) { return x.length; });

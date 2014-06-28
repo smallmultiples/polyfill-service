@@ -68,6 +68,17 @@ function getPolyfillString(options) {
 		ua.patch = '0';
 	}
 
+	// Default is all polyfills
+	if (options.polyfills.length === 0) {
+		options.polyfills = Object.keys(sources).map(function(name) {
+			return {
+				flags: ['maybe'],
+				name: name,
+				aliasOf: name
+			}
+		})
+	}
+
 	var expandedPolyfillList = aliasResolver.resolve(options.polyfills),
 		includePolyfills = expandedPolyfillList.forEach(function(polyfill) {
 		var polyfillSource = sources[polyfill.name];
@@ -92,7 +103,6 @@ function getPolyfillString(options) {
 		}
 
 		explainerComment.push(polyfill.name + ' - ' + polyfill.aliasOf + ' (LICENSE TODO)');
-
 		currentPolyfills[polyfill.name] = options.minify ? polyfillSource.minifile : polyfillSource.file;
 
 	});
@@ -100,7 +110,8 @@ function getPolyfillString(options) {
 	var builtExplainerComment = '/* ' + explainerComment.join('\n * ') + '\n */\n';
 	var builtPolyfillString = objectJoin(currentPolyfills, '');
 
-	return builtExplainerComment + builtPolyfillString;
+	// return builtExplainerComment + builtPolyfillString;
+	return builtPolyfillString
 }
 
 module.exports = {
