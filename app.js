@@ -29,6 +29,8 @@ app.get(/^\/polyfill(\.\w+)(\.\w+)?/, function(req, res) {
 		res.set('Conent-Type', 'text/css');
 	}
 
+	res.set('Cache-Control', 'max-age=' + (60 * 60 * 24 * 365))
+
 	res.set('Vary', 'User-Agent');
 	res.send(polyfill);
 });
