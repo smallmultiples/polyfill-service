@@ -13,7 +13,6 @@
 		}
 		else if(typeof className === 'object') {
 			if (className.baseVal && className.baseVal.trim()) {
-				className = className.baseVal.trim()
 				Array.prototype.push.apply(classList, className.baseVal.trim().split(/\s+/));
 			}
 		}
