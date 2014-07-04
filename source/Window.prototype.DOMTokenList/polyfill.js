@@ -3,8 +3,19 @@
 	function spliceClassList(classList) {
 		Array.prototype.splice.call(classList, 0, classList.length);
 
-		if (classList.element.className.trim()) {
-			Array.prototype.push.apply(classList, classList.element.className.trim().split(/\s+/));
+		var className = classList.element.className
+		if (typeof className === 'string') {
+			className = className.trim()
+
+			if (className.trim()) {
+				Array.prototype.push.apply(classList, className.trim().split(/\s+/));
+			}
+		}
+		else if(typeof className === 'object') {
+			if (className.baseVal && className.baseVal.trim()) {
+				className = className.baseVal.trim()
+				Array.prototype.push.apply(classList, className.baseVal.trim().split(/\s+/));
+			}
 		}
 
 		return classList;
