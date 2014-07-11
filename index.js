@@ -2,6 +2,7 @@ var fs = require('fs'),
 	path = require('path');
 	useragent = require('useragent'),
 	uglify    = require('uglify-js'),
+	tsort     = require('tsort'),
 	AliasResolver = require('./aliases'),
 	lookupAgent = require('./agent');
 
@@ -107,8 +108,25 @@ function getPolyfillString(options) {
 
 	});
 
+	var graph = tsort()
+	for (name in currentPolyfills) {
+		var config = sources[name].config
+		if (config.dependencies) {
+			for(var i = 0; i < config.dependencies.length; i++) {
+				graph.add(config.dependencies[i], name)
+			}
+		}
+		else {
+			graph.add(name)
+		}
+	}
+	var orderedPolyfills = graph.sort()
+
+
 	var builtExplainerComment = '/* ' + explainerComment.join('\n * ') + '\n */\n';
-	var builtPolyfillString = objectJoin(currentPolyfills, '');
+	var builtPolyfillString = orderedPolyfills.map(function(name) {
+		return currentPolyfills[name]
+	}).join('')
 
 	// return builtExplainerComment + builtPolyfillString;
 	return builtPolyfillString
